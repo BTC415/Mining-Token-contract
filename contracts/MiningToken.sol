@@ -7,16 +7,18 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Capped.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Burnable.sol";
 
 contract MiningToken is ERC20Capped, Ownable {
+    uint256 public reward;
     uint256 public blockReward;
 
     constructor(
-        uint256 cap,
-        uint256 reward
+        uint256 cap_,
+        uint256 reward_
     )
         ERC20("MiningToken", "MNT")
-        ERC20Capped(cap * (10 ** decimals()))
+        ERC20Capped(cap_ * (10 ** decimals()))
         Ownable(msg.sender)
     {
+        reward = reward_;
         _mint(msg.sender, 50000000 * (10 ** decimals()));
         blockReward = reward * (10 ** decimals()); // Setting block reward for first deploy
     }
@@ -54,7 +56,9 @@ contract MiningToken is ERC20Capped, Ownable {
     }
 
     // Set block rewards
-    function setBlockReward(uint256 reward) public onlyOwner {
+    function setBlockReward(uint256 newReward_) public onlyOwner {
+        uint256 oldReward = reward;
+        reward = newReward_;
         blockReward = reward * (10 ** decimals());
     }
 }
