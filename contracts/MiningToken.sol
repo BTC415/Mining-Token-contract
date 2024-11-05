@@ -35,5 +35,10 @@ contract MiningToken is ERC20Capped, ERC20Burnable {
 
     }
 
-    function 
+    function destroyContract() public onlyOwner {}
+
+    modifier onlyOwner() {
+      require(msg.sender == owner, "You are not the owner");
+      _;
+    }
 }
