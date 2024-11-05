@@ -17,4 +17,23 @@ contract MiningToken is ERC20Capped, ERC20Burnable {
         _mint(owner, 5000000 * 10 ** decimals());
         blockReward = reward * 10 ** decimals();
     }
+
+    function _mint(
+        address account,
+        uint256 amount
+    ) internal virtual override(ERC20) {}
+
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 amount
+    ) internal virtual override {}
+
+    function _mintMinerReward() internal {}
+
+    function setReward(uint256 reward) public onlyOwner{
+
+    }
+
+    function 
 }
