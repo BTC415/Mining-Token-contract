@@ -1,12 +1,13 @@
 import { expect } from "chai";
 import { ethers } from "hardhat";
+
 describe("MiningToken contract", function () {
   // global vars
-  let Token:any;
-  let miningToken:any;
-  let owner:any;
-  let addr1:any;
-  let addr2:any;
+  let Token: any;
+  let miningToken: any;
+  let owner: any;
+  let addr1: any;
+  let addr2: any;
   let tokenCap = 100000000;
   let tokenBlockReward = 50;
 
