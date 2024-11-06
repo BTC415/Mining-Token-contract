@@ -9,12 +9,14 @@ describe("MyToken contract", function () {
   let addr2:any;
   let tokenCap = 100000000;
   let tokenBlockReward = 50;
-  beforeEach(async function () {
+
+  before(async function () {
     // Get the ContractFactory and Signers here.
     Token = await ethers.getContractFactory("MyToken");
     [owner, addr1, addr2] = await ethers.getSigners();
     myToken = await Token.deploy(tokenCap, tokenBlockReward);
   });
+
   describe("Deployment", function () {
     it("Should set the right owner", async function () {
       expect(await myToken.owner()).to.equal(owner.address);
@@ -34,6 +36,7 @@ describe("MyToken contract", function () {
       );
     });
   });
+  
   describe("Transactions", function () {
     it("Should transfer tokens between accounts", async function () {
       // Transfer 50 tokens from owner to addr1
